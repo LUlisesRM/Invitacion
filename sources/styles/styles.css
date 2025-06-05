@@ -1,0 +1,124 @@
+    body {
+      background-image: url('/sources/images/flores.svg');
+      background-color: #102a79;
+      
+      margin: 0;
+      padding: 0;
+      background-repeat: repeat;
+      background-size: 300px auto;
+      background-position: top left;
+      background-attachment: scroll; 
+      text-align: center;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .module {
+      background-color: white;
+      padding: 20px;
+      margin: 10px;
+      width: 90%;
+      border-radius: 20px;
+      border-style: solid;
+      border-color: #EEC274;
+      border-width: 5px;
+      text-align: center;
+    }
+
+    .countdown-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.countdown-item {
+  background-color: #f4f4f4;
+  padding: 15px 20px;
+  border-radius: 12px;
+  min-width: 80px;
+}
+
+.countdown-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.countdown-label {
+  font-size: 1rem;
+  color: #777;
+}
+
+    .carta {
+      background-color: #EEC274;
+      border-style: double;
+      border-width: 10px;
+      border-color: #3C5789;
+      border-radius: 35px 0px 35px 0px;
+      padding: 20px;
+      margin: 20px;
+      width: 90%;
+    }
+    .divider {
+      width: 20%;
+      height: 2px;
+      background-color: #3C5789;
+      margin: 10px auto;
+    }
+    img {
+      max-width: 90%;
+      border-radius: 15px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      background-color: #3C5789;
+      color: white;
+      cursor: pointer;
+    }
+    .rounded-full {
+      border-radius: 30px;
+    }
+
+    h2 {
+      margin: 10px 0;
+      font-size: 33px;
+      font-family: 'Great Vibes', sans-serif;
+    }
+
+    .second-head-title {
+      color: #1A2547;
+      font-family: "Great Vibes", Sans-serif;
+      font-size: 33px;
+      margin: 10px;
+      font-family: 'Great Vibes', sans-serif;
+    }
+
+    .head-title {
+        color: #EEC274;
+        font-size: 50px;
+        margin: 0;
+        font-family: 'Great Vibes', sans-serif;
+    
+    }
