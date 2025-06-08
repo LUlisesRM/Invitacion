@@ -9,12 +9,19 @@
   
 </head>
 <body>
-  
+  <button id="mute-toggle"></button>
   <audio id="bg-music" autoplay loop>
     <source src="sources/audio/elToroMambo.mp3" type="audio/mp3">
   </audio>
+  </button>
 
- 
+ <div id="intro-modal" class="intro-modal">
+  <h1 class="intro-text-top">Haz recibido una invitacion</h1>
+  <img src="sources/images/sello.png" alt="Carta de invitación" class="intro-img">
+  <h1 class="intro-text-top">Da click para abrirla</h1>
+</div>
+
+<button id="mute-toggle"></button>
 
   <div class="container">
     
@@ -24,7 +31,22 @@
     <div class="module">
       <h3 class="head-title">Bruno Carlo</h3>
       <h3 class="second-head-title">19 Julio 2025</h3>
-      <img src="sources/pictures/bebe_1.jpeg" alt="Foto de los padres">
+      
+     <div class="modulo-carrusel">
+    <div class="carousel" id="bebe-carousel">
+        <div class="carousel-track">
+            <img src="sources/pictures/bebe_3.jpeg" class="carousel-img" alt="bebe" />
+            
+            <img src="sources/pictures/bebe_1.jpeg" class="carousel-img" alt="bebe" />
+            <img src="sources/pictures/bebe_2.jpeg" class="carousel-img" alt="bebe" />
+            <img src="sources/pictures/bebe_3.jpeg" class="carousel-img" alt="bebe" />
+            
+            <img src="sources/pictures/bebe_1.jpeg" class="carousel-img" alt="bebe" />
+        </div>
+    </div>
+</div>
+
+
     </div>
     <img src="sources/images/separador.svg" alt="Separador" width="200px">
     
@@ -53,10 +75,11 @@
     <img src="sources/images/separador.svg" alt="Separador" width="200px">
 
     <div class="carta">
-      <p>
+      <h3 style="color: black; text-align: justify;">
         Padre nuestro, te doy gracias por permitirme hoy estar ante ti, ofreciéndote mi 1er año de vida.<br>
         Te pido que me protejas a cada momento y permite que mi ángel de la guarda este siempre conmigo. Amen
-      </p>
+      </h3
+      >
     </div>
 
     <img src="sources/images/separador.svg" alt="Separador" width="200px">
@@ -85,7 +108,7 @@
       <img src="sources/images/icon-church.svg" alt="Separador" width="70px">
       <h3 class="second-head-title" style="color: black;">Ceremonia</h3>
       <div class="divider"></div>
-      <h3 class="second-head-title">12:00</h3>
+      <h3 class="second-head-title">12:00 hrs.</h3>
       <h3 class="second-head-title">Basílica de Guadalupe</h3><br>
       <h3>Fray Juan de Zumárraga No. 2, Colonia Villa Gustavo A. Madero, Alcaldía Gustavo A. Madero, Ciudad de México</h3>
       <a href="https://www.google.com/maps/dir/?api=1&destination=Fray%20Juan%20de%20Zum%C3%A1rraga%20No.%202%2C%20Colonia%20Villa%20Gustavo%20A.%20Madero%2C%20Alcald%C3%ADa%20Gustavo%20A.%20Madero%2C%20Ciudad%20de%20M%C3%A9xico" target="_blank">
@@ -97,7 +120,7 @@
       <img src="sources/images/balloons.svg" alt="Separador" width="70px">
       <h3 class="second-head-title" style="color: black;">Fiesta</h3>
       <div class="divider"></div>
-      <h3 class="second-head-title">14:30</h3>
+      <h3 class="second-head-title">14:30 hrs.</h3>
       <h3 class="second-head-title">Casa Familia Ponce</h3><br>
       <h3>Calle San Juan, 2da cerrada de San Juan Mz 3 LT 16 Col. Barrio San Pedro, C. P 56334</h3>
       <a href="https://www.google.com/maps/dir/?api=1&destination=Calle%20San%20Juan%2C%202da%20cerrada%20de%20San%20Juan%20Mz%203%20LT%2016%20Col.%20Barrio%20San%20Pedro%2C%20C.%20P%2056334" target="_blank">
@@ -117,15 +140,20 @@
 
     <img src="sources/images/logo-horse.svg" alt="Separador" width="200px">
 
-    <div class="module rounded-full">
-      <h3 class="second-head-title">Confirma tu Asistencia por Whatsapp </h3>
-
-      <a href="https://wa.me/5215656862565?text=Confirmo%20mi%20asistencia" target="_blank">
-        <button><img src="sources/images/icon-whp.svg" alt="Whatsapp" width="30px">Confirmar</button>
-      </a>
-    </div>
+    <div id="confirm-modal" class="modal-overlay hidden">
+  <div class="module">
+    <h3 class="second-head-title">Confirma tu Asistencia por Whatsapp </h3>
+    <button id="confirm-btn">
+      <img src="sources/images/icon-whp.svg" alt="Whatsapp" width="30px"> Confirmar
+    </button>
   </div>
-  <script src="sources/scripts/contador.js"></script>
+</div>
+
+  </div>
   <script src="sources/scripts/audio.js"></script>
+  <script src="sources/scripts/carrusel.js"></script>
+  <script src="sources/scripts/contador.js"></script>
+  <script src="sources/scripts/confirmacion.js"></script>
+  
 </body>
 </html>
