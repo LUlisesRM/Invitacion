@@ -37,13 +37,17 @@ body {
   pointer-events: none;
 }
 
-
-.intro-text-top {
-  font-size: 36px;
-  margin-bottom: 20px;
+.intro-text {
+  position: relative;
+  z-index: 1 ;
+  font-size: 55px;
+  margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 .intro-img {
+  position: relative;
+  z-index: 1;
   width: 200px;
   max-width: 80%;
   transition: transform 0.3s;
@@ -53,9 +57,43 @@ body {
   transform: scale(1.2);
 }
 
-.intro-text-bottom {
-  font-size: 28px;
-  margin-top: 20px;
+.seal-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.solapa {
+  position: absolute;
+  width: 300px;
+  height: 4px;
+  background-color: #b69a6f;
+  transform-origin: center;
+  
+  z-index: 1;
+}
+
+
+.solapa-superior-izquierda {
+  left: -95%;
+  transform: rotate(45deg);
+}
+
+
+.solapa-superior-derecha {
+  right: -95%;
+  transform: rotate(-45deg);
+}
+
+.solapa-inferior-izquierda {
+  left: -120%;
+  top: 100%;
+  transform: rotate(-45deg);
+}
+
+.solapa-inferior-derecha {
+  right: -120%;
+  top: 100%;
+  transform: rotate(45deg);
 }
 
 /*BOTON DE AUDIO*/
