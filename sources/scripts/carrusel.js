@@ -1,147 +1,106 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const track = document.querySelector('.carousel-track');
-    // Convertimos a Array para usar métodos como map, filter, etc.
-    const slides = Array.from(document.querySelectorAll('.carousel-img')); 
-    
-    // El número de imágenes originales (sin los clones que agregamos al principio y al final)
-    const originalSlideCount = slides.length - 2; 
+    const carouselContainer = document.querySelector('.carousel-container');
+    const carousel = document.querySelector('.carousel');
+    const firstLogosBlock = document.querySelector('.logos'); // Seleccionamos el primer bloque de logos
+    let isDown = false;
+    let startX;
+    let scrollLeft;
 
-    let slideWidth; // Se calculará al inicio
-    // Comenzamos en el índice 1 para mostrar la primera imagen original (después del clon inicial)
-    let index = 1; 
-    let startPos = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    let isDragging = false;
-    let autoSlideInterval;
+    // --- FUNCIÓN PARA CALCULAR Y ESTABLECER EL ANCHO TOTAL DE UN BLOQUE .logos DINÁMICAMENTE ---
+    // Esto es crucial para la fluidez perfecta y evitar los saltos.
+    const updateCarouselWidth = () => {
+        // Obtenemos el ancho real del primer bloque de .logos, incluyendo sus elementos hijos y gaps.
+        // Asegúrate de que las imágenes estén renderizadas para obtener el ancho correcto.
+        const logosBlockWidth = firstLogosBlock.offsetWidth;
+        // Establecemos este ancho como una variable CSS personalizada en el elemento raíz del documento.
+        document.documentElement.style.setProperty('--logos-total-block-width', `${logosBlockWidth}px`);
+        console.log("Ancho calculado del bloque .logos:", logosBlockWidth + "px"); // Para depuración en consola
+    };
 
-    function getSlideWidth() {
-     
-        return slides[0].offsetWidth + (parseFloat(getComputedStyle(track).gap) || 0);
-    }
+    // Llamamos la función al cargar la página para establecer el ancho inicial
+    updateCarouselWidth();
+    // También la llamamos cuando la ventana se redimensiona, por si el ancho del carrusel cambia.
+    window.addEventListener('resize', updateCarouselWidth);
 
-    function setPosition(animate = true) {
-        track.style.transition = animate ? 'transform 0.4s ease' : 'none';
-        track.style.transform = `translateX(${-index * slideWidth}px)`;
-        prevTranslate = -index * slideWidth; // Actualiza el translate para el arrastre
-    }
+    // --- Funcionalidad de arrastrar (scrolleable) ---
+    carouselContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carouselContainer.classList.add('dragging');
+        startX = e.pageX - carouselContainer.offsetLeft;
+        scrollLeft = carouselContainer.scrollLeft;
+        // Pausar la animación al iniciar el arrastre
+        carousel.querySelector('.logos').style.animationPlayState = 'paused';
+        carousel.querySelector('.logos[aria-hidden="true"]').style.animationPlayState = 'paused';
+    });
 
-    // Avanza al siguiente slide
-    function goToNextSlide() {
-        index++;
-        setPosition(true);
-    }
+    carouselContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+        carouselContainer.classList.remove('dragging');
+        // Reanudar la animación si el ratón sale y no estamos arrastrando activamente
+        carousel.querySelector('.logos').style.animationPlayState = 'running';
+        carousel.querySelector('.logos[aria-hidden="true"]').style.animationPlayState = 'running';
+    });
 
-    // Regresa al slide anterior
-    function goToPrevSlide() {
-        index--;
-        setPosition(true);
-    }
+    carouselContainer.addEventListener('mouseup', () => {
+        isDown = false;
+        carouselContainer.classList.remove('dragging');
+        // Reanudar la animación al soltar el clic
+        carousel.querySelector('.logos').style.animationPlayState = 'running';
+        carousel.querySelector('.logos[aria-hidden="true"]').style.animationPlayState = 'running';
+    });
 
-    // Inicia el avance automático del carrusel
-    function startAutoSlide() {
-        // Limpiar cualquier intervalo anterior para evitar múltiples ejecuciones
-        clearInterval(autoSlideInterval); 
-        autoSlideInterval = setInterval(() => {
-            if (!isDragging) { // Solo avanza si el usuario no está arrastrando
-                goToNextSlide();
-            }
-        }, 3000); // Avanza cada 3 segundos
-    }
+    carouselContainer.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carouselContainer.offsetLeft;
+        const walk = (x - startX) * 2;
+        carouselContainer.scrollLeft = scrollLeft - walk;
+    });
 
-    // --- Lógica del Loop Infinito (Usando Clones) ---
-    track.addEventListener('transitionend', () => {
-        // Si el índice llega al clon de la primera imagen (originalSlideCount + 1),
-        // saltamos instantáneamente a la primera imagen real (índice 1).
-        if (index === originalSlideCount + 1) {
-            track.style.transition = 'none'; // Deshabilita la transición para el salto
-            index = 1; // Volvemos a la primera imagen original
-            track.style.transform = `translateX(${-index * slideWidth}px)`;
-            prevTranslate = -index * slideWidth; // Actualizar el translate
-        } 
-        // Si el índice llega al clon de la última imagen (índice 0),
-        // saltamos instantáneamente a la última imagen real (originalSlideCount).
-        else if (index === 0) {
-            track.style.transition = 'none'; // Deshabilita la transición para el salto
-            index = originalSlideCount; // Volvemos a la última imagen original
-            track.style.transform = `translateX(${-index * slideWidth}px)`;
-            prevTranslate = -index * slideWidth; // Actualizar el translate
+    // --- Funcionalidad táctil para móviles ---
+    carouselContainer.addEventListener('touchstart', (e) => {
+        isDown = true;
+        carouselContainer.classList.add('dragging');
+        startX = e.touches[0].pageX - carouselContainer.offsetLeft;
+        scrollLeft = carouselContainer.scrollLeft;
+        // Pausar la animación al iniciar el toque
+        carousel.querySelector('.logos').style.animationPlayState = 'paused';
+        carousel.querySelector('.logos[aria-hidden="true"]').style.animationPlayState = 'paused';
+    });
+
+    carouselContainer.addEventListener('touchend', () => {
+        isDown = false;
+        carouselContainer.classList.remove('dragging');
+        // Reanudar la animación al soltar el toque
+        carousel.querySelector('.logos').style.animationPlayState = 'running';
+        carousel.querySelector('.logos[aria-hidden="true"]').style.animationPlayState = 'running';
+    });
+
+    carouselContainer.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - carouselContainer.offsetLeft;
+        const walk = (x - startX) * 2;
+        carouselContainer.scrollLeft = scrollLeft - walk;
+    });
+
+
+    // --- Asegurar el efecto infinito con scroll manual ---
+    carouselContainer.addEventListener('scroll', () => {
+        const currentScrollLeft = carouselContainer.scrollLeft;
+        const maxScrollLeft = carouselContainer.scrollWidth - carouselContainer.clientWidth;
+        const firstLogosWidth = firstLogosBlock.offsetWidth;
+
+        if (currentScrollLeft <= 1) { // Pequeño margen para evitar redondeos (<= 1px)
+            // Si el usuario scrollea hasta el principio, salta al final del primer grupo de logos.
+            carouselContainer.scrollLeft = firstLogosWidth;
+        } else if (currentScrollLeft >= maxScrollLeft - 1) { // Pequeño margen para el final (>= max - 1px)
+            // Si el usuario scrollea hasta el final, salta al principio del primer grupo de logos (0).
+            carouselContainer.scrollLeft = 0;
         }
     });
 
-    // --- Eventos de Arrastre (Mouse y Touch) ---
-
-    // Manejador de inicio de arrastre
-    function handleStart(clientX) {
-        isDragging = true;
-        startPos = clientX;
-        track.style.transition = 'none'; // Deshabilita la transición mientras arrastras
-        currentTranslate = prevTranslate; // Establece la posición actual para el arrastre
-    }
-
-    // Manejador de movimiento de arrastre
-    function handleMove(clientX) {
-        if (!isDragging) return;
-        const deltaX = clientX - startPos; // Cuánto se ha movido el cursor/dedo
-        // Mueve el track según el arrastre desde la posición actual
-        track.style.transform = `translateX(${currentTranslate + deltaX}px)`;
-    }
-
-    // Manejador de fin de arrastre
-    function handleEnd(clientX) {
-        if (!isDragging) return;
-        isDragging = false;
-        const movedBy = clientX - startPos; // Distancia total arrastrada
-
-        // Determinar si se arrastró lo suficiente para cambiar de slide
-        if (movedBy < -50) { // Si se arrastró hacia la izquierda (avanzar)
-            goToNextSlide();
-        } else if (movedBy > 50) { // Si se arrastró hacia la derecha (retroceder)
-            goToPrevSlide();
-        } else { // Si no se movió lo suficiente, volver a la posición original
-            setPosition(true); 
-        }
-    }
-
-    // Eventos de Mouse
-    track.addEventListener('mousedown', e => {
-        e.preventDefault(); // Previene el arrastre de imagen por defecto
-        handleStart(e.clientX);
-    });
-    // Los eventos mousemove y mouseup deben ser en `window` para que el arrastre no se corte si el cursor sale del track
-    window.addEventListener('mousemove', e => handleMove(e.clientX));
-    window.addEventListener('mouseup', e => handleEnd(e.clientX));
-
-    // Eventos Touch
-    // `passive: true` para `touchstart` y `touchend` suele ser seguro,
-    // pero `passive: false` en `touchmove` es crucial si usas `e.preventDefault()`
-    track.addEventListener('touchstart', e => handleStart(e.touches[0].clientX), { passive: true });
-    track.addEventListener('touchmove', e => {
-        e.preventDefault(); // Previene el scroll vertical al arrastrar horizontalmente
-        handleMove(e.touches[0].clientX);
-    }, { passive: false });
-    track.addEventListener('touchend', e => handleEnd(e.changedTouches[0].clientX));
-
-    // --- Inicialización y Eventos de Ventana ---
-
-    // Actualizar `slideWidth` y la posición si se cambia el tamaño de la pantalla
-    window.addEventListener('resize', () => {
-        slideWidth = getSlideWidth();
-        setPosition(false); // Sin transición al redimensionar
-    });
-
-    // Inicializar al cargar la página
-    slideWidth = getSlideWidth();
-    setPosition(false); // Establecer la posición inicial sin transición
-
-    // --- Pausa y Reanudación del Auto-slide ---
-
-    // Pausar auto-slide al pasar el mouse por encima
-    track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-
-    // Reanudar auto-slide al quitar el mouse
-    track.addEventListener('mouseleave', () => startAutoSlide());
-
-    // Iniciar el auto-slide por primera vez
-    startAutoSlide();
+    // Iniciar la animación al cargar la página (por si acaso el CSS no lo hace inmediatamente)
+    // Aseguramos que la animación esté corriendo si no hay interacción.
+    carousel.querySelector('.logos').style.animationPlayState = 'running';
+    carousel.querySelector('.logos[aria-hidden="true"]').style.animationPlayState = 'running';
 });
