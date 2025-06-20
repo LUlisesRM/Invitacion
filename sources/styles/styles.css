@@ -161,7 +161,7 @@ h3 {
 /*MODULOS*/
 
 .header {
-  min-height: 100vh; /* Toma al menos toda la altura de la pantalla */
+  min-height: 80vh; /* Toma al menos toda la altura de la pantalla */
   display: flex;
   flex-direction: column;
   justify-content: center; /* Centrado vertical */
@@ -184,11 +184,12 @@ h3 {
 .header-visible {
   opacity: 1;
   pointer-events: auto;
+  margin-bottom: 70px;
 }
 
 div.header h2{
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .module.visible {
@@ -209,7 +210,7 @@ div.header h2{
   padding: 20px;
   align-items: center;
   margin: 10px;
-  margin-top: 20px;
+  margin-top: 40px;
   width: 90%;
   border-radius: 20px;
   border-style: solid;
