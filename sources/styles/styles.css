@@ -161,16 +161,19 @@ h3 {
 /*MODULOS*/
 
 .header {
-  height: 95vh; /* Ocupar altura total de la pantalla */
+  min-height: 100vh; /* Toma al menos toda la altura de la pantalla */
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centrar verticalmente */
-  align-items: center;     /* Centrar horizontalmente */
+  justify-content: center; /* Centrado vertical */
+  align-items: center;     /* Centrado horizontal */
   text-align: center;
+  padding: 20px; /* Espaciado interno adaptable */
+  box-sizing: border-box;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 1s ease, transform 1s ease;
 }
+
 
 .header-hidden {
   opacity: 0;
