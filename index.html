@@ -7,6 +7,7 @@
   <title>Invitación Bautizo</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="sources/styles/styles.css">
+  <link rel="stylesheet" href="sources/styles/background.css">
 
 </head>
 
@@ -50,20 +51,20 @@
 
       <section class="carousel-container">
         <div class="carousel">
-            <div class="logos">
-                <img src="sources/pictures/bebe_1.jpeg" alt="Bebé 1" class="carousel-image">
-                <img src="sources/pictures/bebe_2.jpeg" alt="Bebé 2" class="carousel-image">
-                <img src="sources/pictures/bebe_3.jpeg" alt="Bebé 3" class="carousel-image">
-                <img src="sources/pictures/bebe_4.jpeg" alt="Bebé 4" class="carousel-image">
-            </div>
-            <div class="logos" aria-hidden="true">
-                <img src="sources/pictures/bebe_1.jpeg" alt="Bebé 1" class="carousel-image">
-                <img src="sources/pictures/bebe_2.jpeg" alt="Bebé 2" class="carousel-image">
-                <img src="sources/pictures/bebe_3.jpeg" alt="Bebé 3" class="carousel-image">
-                <img src="sources/pictures/bebe_4.jpeg" alt="Bebé 4" class="carousel-image">
-            </div>
+          <div class="logos">
+            <img src="sources/pictures/bebe_1.jpeg" alt="Bebé 1" class="carousel-image">
+            <img src="sources/pictures/bebe_2.jpeg" alt="Bebé 2" class="carousel-image">
+            <img src="sources/pictures/bebe_3.jpeg" alt="Bebé 3" class="carousel-image">
+            <img src="sources/pictures/bebe_4.jpeg" alt="Bebé 4" class="carousel-image">
+          </div>
+          <div class="logos" aria-hidden="true">
+            <img src="sources/pictures/bebe_1.jpeg" alt="Bebé 1" class="carousel-image">
+            <img src="sources/pictures/bebe_2.jpeg" alt="Bebé 2" class="carousel-image">
+            <img src="sources/pictures/bebe_3.jpeg" alt="Bebé 3" class="carousel-image">
+            <img src="sources/pictures/bebe_4.jpeg" alt="Bebé 4" class="carousel-image">
+          </div>
         </div>
-    </section>
+      </section>
 
 
 
@@ -135,7 +136,7 @@
       </h3>
       <a href="https://www.google.com/maps/dir/?api=1&destination=Fray%20Juan%20de%20Zum%C3%A1rraga%20No.%202%2C%20Colonia%20Villa%20Gustavo%20A.%20Madero%2C%20Alcald%C3%ADa%20Gustavo%20A.%20Madero%2C%20Ciudad%20de%20M%C3%A9xico"
         target="_blank">
-        <button class="boton-palpitar">Ver ubicación</button>
+        <button class="palpitar">Ver ubicación</button>
       </a>
     </div>
 
@@ -148,7 +149,7 @@
       <h3>Calle San Juan, 2da cerrada de San Juan Mz 3 LT 16 Col. Barrio San Pedro, C. P 56334</h3>
       <a href="https://www.google.com/maps/dir/?api=1&destination=Calle%20San%20Juan%2C%202da%20cerrada%20de%20San%20Juan%20Mz%203%20LT%2016%20Col.%20Barrio%20San%20Pedro%2C%20C.%20P%2056334"
         target="_blank">
-        <button class="boton-palpitar">Ver ubicación</button>
+        <button class="palpitar">Ver ubicación</button>
       </a>
     </div>
 
@@ -166,14 +167,17 @@
 
     <div id="confirm-modal" class="modal-overlay hidden">
       <div class="module">
-        <h3 class="second-head-title">Confirma tu Asistencia</h3>
-        <button id="confirm-btn">
-           Asistire
-        </button>
+        <img src="sources/images/icon-x.svg" class="close-btn" aria-label="Cerrar modal">
+
+        <div class="modal-content fade-in">
+          <h3 class="second-head-title">Confirma tu Asistencia</h3>
+          <button id="confirm-btn" class="palpitar">Asistiré</button>
+        </div>
       </div>
     </div>
 
   </div>
+
   <script src="sources/scripts/animaciones.js"></script>
   <script src="sources/scripts/acciones-modal.js"></script>
   <script src="sources/scripts/audio.js"></script>

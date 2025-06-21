@@ -1,6 +1,6 @@
 body {
   background-image: url('../images/flores.svg');
-  background-color: #102a79;
+  background-color: #1a2547;
 
   margin: 0;
   padding: 0;
@@ -14,6 +14,7 @@ body {
 body.modal-open {
   overflow: hidden;
 }
+
 
 img {
   max-width: 90%;
@@ -82,6 +83,7 @@ h3 {
   width: 200px;
   max-width: 80%;
   transition: transform 0.3s;
+  transform: scale(1);
 }
 
 .intro-img:hover {
@@ -215,7 +217,7 @@ div.header h2 {
   align-items: center;
   margin: 10px;
   margin-top: 40px;
-  width: 90%;
+  width: 80%;
   border-radius: 20px;
   border-style: solid;
   border-color: #EEC274;
@@ -414,7 +416,7 @@ div.header h2 {
   }
 }
 
-.boton-palpitar {
+.palpitar {
   animation: palpitar 1.5s infinite;
   transition: transform 0.2s;
 }
@@ -425,43 +427,68 @@ div.header h2 {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  /* fondo translúcido */
+  background-color: rgba(0, 0, 0, 0.6); /* fondo translúcido */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
 }
 
-#confirm-btn {
-  background-color: #2b87ff;
-  border: none;
-  color: white;
-  margin: auto;
-  padding: 0.8rem 1.5rem;
-  font-size: 20px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  border-radius: 10px;
-  margin-top: 1rem;
+
+/* Botón de cierre (X) */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
+
+.close-btn:hover {
+  opacity: 1;
+}
+
+
+/* Contenido animado del modal */
+.modal-content {
+  animation: fadeInFromTop 0.4s ease-out forwards;
+}
+
+/* Animación: fade in desde arriba */
+.fade-in {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInFromTop 0.4s ease-out forwards;
+}
+
+@keyframes fadeInFromTop {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .hidden {
   display: none;
 }
 
-.confirmacion-wa{
+/* WhatsApp confirmación */
+.confirmacion-wa {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 1.5rem;
 }
 
-.contacto-wa{
-  img{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-  }
+.contacto-wa img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contacto-wa p {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-weight: bold;
 }
