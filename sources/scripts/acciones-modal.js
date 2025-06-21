@@ -49,7 +49,7 @@ setTimeout(() => {
     const sealRect = seal.getBoundingClientRect();
 
     // Posicionar la animación sobre el sello
-    lottieGuide.style.top = `${sealRect.top + window.scrollY - 10}px`;
+    lottieGuide.style.top = `${sealRect.top + window.scrollY}px`;
     lottieGuide.style.left = `${sealRect.left + window.scrollX + (sealRect.width / 2) - 126}px`; // centrado horizontal, ancho/2 - mitad del guide
 
     // Cargar Lottie
