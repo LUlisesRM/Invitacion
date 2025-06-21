@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
       <h3 class="second-head-title">Para confirmar tu asistencia, enviale un WhatsApp a:</h3>
       <div class="confirmacion-wa">
       <div class="contacto-wa">
-      <img src="/sources/pictures/mama.jpeg" alt="Mama" id="mama">
+      <img src="sources/pictures/mama.jpeg" alt="Mama" id="mama">
       <p>Mami</p>
       </div>
       <div class="contacto-wa">
-      <img src="/sources/pictures/papa.jpeg" alt="Mama" id="papa">
+      <img src="sources/pictures/papa.jpeg" alt="Mama" id="papa">
       <p>Papi</p>
       </div>
       </div>
