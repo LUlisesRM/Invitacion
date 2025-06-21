@@ -90,6 +90,11 @@ h3 {
   transform: scale(1.2);
 }
 
+.intro-img.clicked {
+  transform: scale(1.2);
+ 
+}
+
 .seal-wrapper {
   position: relative;
   display: inline-block;
@@ -161,19 +166,14 @@ h3 {
 
 
 /*MODULOS*/
-
 .header {
   min-height: 80vh;
-  /* Toma al menos toda la altura de la pantalla */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Centrado vertical */
   align-items: center;
-  /* Centrado horizontal */
   text-align: center;
   padding: 20px;
-  /* Espaciado interno adaptable */
   box-sizing: border-box;
   opacity: 0;
   transform: translateY(10px);
@@ -492,3 +492,51 @@ div.header h2 {
   margin-top: 0.5rem;
   font-weight: bold;
 }
+
+
+/*GUIDEDANCE*/
+.guide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10001;
+  display: none;
+  justify-content: center;
+  align-items: flex-start;
+  pointer-events: auto;
+  opacity: 0;
+  transition: none;
+  display: none;
+  padding-top: 300px;
+}
+
+.guide-overlay.visible {
+  opacity: 1;
+  display: flex;
+}
+
+.lottie-guide {
+  position: absolute;
+  width: 250px;
+  opacity: 0.9;
+  pointer-events: none;
+  animation: fadeInOnce 0.6s ease forwards;
+}
+
+@keyframes fadeLoop {
+  0% { opacity: 1; }
+  70% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.lottie-guide.flicker {
+  animation: fadeLoop 3s ease-in-out infinite;
+}
+
+@keyframes fadeInOnce {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
