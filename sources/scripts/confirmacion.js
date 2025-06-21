@@ -16,10 +16,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Confirmar asistencia
+  // Confirmar asistencia con mensaje personalizado
   confirmBtn.addEventListener('click', () => {
-    modal.classList.add('hidden'); // Cierra modal
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Ir al inicio
+    const modalContent = modal.querySelector('.module');
+    modalContent.innerHTML = `
+      <h3 class="second-head-title">Para confirmar tu asistencia, enviale un WhatsApp a:</h3>
+      <div class="confirmacion-wa">
+      <div class="contacto-wa">
+      <img src="/sources/pictures/mama.jpeg" alt="Mama" id="mama">
+      <p>Mami</p>
+      </div>
+      <div class="contacto-wa">
+      <img src="/sources/pictures/papa.jpeg" alt="Mama" id="papa">
+      <p>Papi</p>
+      </div>
+      </div>
+    `;
+
+    
+
+    // ✅ Ahora sí: obtener los elementos recién insertados
+  const sendmama = document.getElementById('mama');
+  const sendpapa = document.getElementById('papa');
+
+  sendmama.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     window.open('https://wa.me/5215613683435?text=Confirmo%20mi%20asistencia', '_blank');
+  });
+
+  sendpapa.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.open('https://wa.me/5215611347845?text=Confirmo%20mi%20asistencia', '_blank');
+  });
+
   });
 });
