@@ -45,6 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
           modal.classList.add('hidden');
           window.scrollTo({ top: 0, behavior: 'smooth' });
           window.open('https://wa.me/5215613683435?text=Confirmo%20mi%20asistencia', '_blank');
+
+          // Google Calendar
+          const calendarUrl = 'https://www.google.com/calendar/render?action=TEMPLATE' +
+            '&text=Fiesta%20de%20Valeria' +
+            '&dates=20250720T180000Z/20250720T210000Z' +
+            '&details=Confirma%20tu%20asistencia%20vía%20WhatsApp%20y%20no%20faltes%20a%20la%20fiesta%20🎉' +
+            '&location=Casa%20de%20los%20abuelos,%20CDMX' +
+            '&sf=true&output=xml';
+
+          window.open(calendarUrl, '_blank');
         });
 
         document.getElementById('papa').addEventListener('click', () => {
