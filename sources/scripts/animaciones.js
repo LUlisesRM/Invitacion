@@ -1,47 +1,89 @@
-// Animación para módulos
-const modules = document.querySelectorAll('.module');
+document.addEventListener('DOMContentLoaded', () => {
+    // Animación de Lottie para el sello
+    setTimeout(() => {
+        const guide = document.getElementById('guide-overlay');
+        const seal = document.getElementById('seal');
+        const lottieGuide = document.getElementById('lottie-guide');
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target); // solo una vez
-    }
-  });
-}, {
-  threshold: 0.2
-});
+        if (guide && seal && lottieGuide) {
+            guide.classList.add('visible');
 
-modules.forEach(module => {
-  observer.observe(module);
-});
+            const sealRect = seal.getBoundingClientRect();
+            lottieGuide.style.top = `${sealRect.top + window.scrollY - 10}px`;
+            lottieGuide.style.left = `${sealRect.left + window.scrollX + (sealRect.width / 2) - 126}px`;
 
-// Animación para el header, después del modal
-window.addEventListener('DOMContentLoaded', () => {
-  const header = document.querySelector('.header');
-  const introModal = document.getElementById('intro-modal');
+            lottie.loadAnimation({
+                container: lottieGuide,
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'sources/animations/click-hand.json'
+            });
 
-  // Solo si ambos existen
-  if (header && introModal) {
-    // Agrega clase inicial oculta
-    header.classList.add('header-hidden');
+            setTimeout(() => {
+                lottieGuide.style.animation = 'fadeLoop 3s ease-in-out infinite';
+            }, 2000);
 
-    const observerModal = new MutationObserver((mutations) => {
-      mutations.forEach(mutation => {
-        if (
-          mutation.attributeName === "style" &&
-          introModal.style.display === "none"
-        ) {
-          setTimeout(() => {
-            header.classList.remove('header-hidden');
-            header.classList.add('header-visible');
-          }, 100); // 1 segundo después de desaparecer el modal
-
-          observerModal.disconnect(); // detener la observación
+            guide.addEventListener('click', () => {
+                guide.classList.remove('visible');
+            });
         }
-      });
+    }, 2000);
+
+    // Animación de Lottie para swipe up
+    const header = document.querySelector('.header');
+
+    if (!header) {
+        console.warn("No se encontró el header para observar.");
+        return;
+    }
+
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (
+                mutation.type === 'attributes' &&
+                mutation.attributeName === 'class' &&
+                !header.classList.contains('header-hidden')
+            ) {
+                observer.disconnect();
+
+                setTimeout(() => {
+                    const guide = document.getElementById('swipe-guide-overlay');
+                    const lottieGuide = document.getElementById('swipe-lottie-guide');
+
+                    if (guide && lottieGuide) {
+                        guide.classList.add('visible');
+
+                        const headerRect = header.getBoundingClientRect();
+                        lottieGuide.style.top = `${headerRect.top + window.scrollY + 100}px`;
+                        lottieGuide.style.left = `${headerRect.left + window.scrollX + (headerRect.width / 2) - 125}px`;
+                        console.log("Cargando animación swipe");
+
+                        lottie.destroy();
+
+                        lottie.loadAnimation({
+                            container: lottieGuide,
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: true,
+                            path: 'sources/animations/swipe-up.json'
+                        });
+
+                        setTimeout(() => {
+                            lottieGuide.style.animation = 'fadeLoop 3s ease-in-out infinite';
+                        }, 2000);
+
+                        guide.addEventListener('click', () => {
+                            guide.classList.remove('visible');
+                        });
+                    }
+                }, 1000);
+            }
+        });
     });
 
-    observerModal.observe(introModal, { attributes: true });
-  }
+    observer.observe(header, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
 });
