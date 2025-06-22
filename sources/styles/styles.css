@@ -285,7 +285,7 @@ div.header h2 {
 }
 
 /* --- ¡CAMBIO AQUÍ! Usamos la clase específica para las imágenes del carrusel --- */
-.carousel-image { /* ¡ANTES ERA .logos img! */
+.carousel-image {
     width: var(--logo-width);
     height: var(--logo-height);
     object-fit: cover;
@@ -294,7 +294,7 @@ div.header h2 {
     cursor: grab;
 }
 
-.carousel-image:hover { /* ¡CAMBIO AQUÍ! */
+.carousel-image:hover {
     scale: 1.10;
 }
 
@@ -311,7 +311,6 @@ div.header h2 {
         transform: translateX(0);
     }
     100% {
-        /* ¡AHORA USAMOS LA VARIABLE DEFINIDA POR JAVASCRIPT! */
         transform: translateX(calc(-1 * var(--logos-total-block-width)));
     }
 }
@@ -359,6 +358,31 @@ div.header h2 {
   font-family: "Great Vibes", Sans-serif;
 
 }
+
+.countdown-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.countdown-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #ffffff;
+  font-family: "Great Vibes", Sans-serif;
+  text-align: center;
+}
+
+
+
+.countdown-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
 
 .carta {
   background-color: #f8e1bc;
@@ -487,10 +511,18 @@ div.header h2 {
   object-fit: cover;
 }
 
+.imgwa {
+  padding-right: 8px;
+  width: 30px;
+  margin: -5px;
+}
+
 .contacto-wa p {
   text-align: center;
   margin-top: 0.5rem;
   font-weight: bold;
+
+  color: gray;
 }
 
 
@@ -522,7 +554,7 @@ div.header h2 {
   width: 250px;
   opacity: 0.9;
   pointer-events: none;
-  animation: fadeInOnce 0.6s ease forwards;
+  animation: fadeInOnce 0.9s ease forwards;
 }
 
 @keyframes fadeLoop {

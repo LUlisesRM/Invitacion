@@ -27,15 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
         contentWrapper.classList.add('fade-in');
 
         contentWrapper.innerHTML = `
-          <h3 class="second-head-title fade-in">Para confirmar tu asistencia, envíale un WhatsApp a:</h3>
+          <h3 class="second-head-title fade-in">Para confirmar tu asistencia, elige a alguien para enviarle un</h3>
+          <h3 class="second-head-title fade-in"><img src="sources/images/icon-whp.svg" class="imgwa"> WhatsApp:</h3>
           <div class="confirmacion-wa fade-in">
             <div class="contacto-wa">
-              <img src="sources/pictures/mama.jpeg" alt="Mama" id="mama">
-              <p>Mami</p>
+              <img src="sources/pictures/mama.jpeg" alt="Mama" id="mama" class="palpitar">
+              <p>Mamá</p>
             </div>
             <div class="contacto-wa">
-              <img src="sources/pictures/papa.jpeg" alt="Papa" id="papa">
-              <p>Papi</p>
+              <img src="sources/pictures/papa.jpeg" alt="Papa" id="papa" class="palpitar">
+              <p>Papá</p>
             </div>
           </div>
         `;
@@ -44,23 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('mama').addEventListener('click', () => {
           modal.classList.add('hidden');
           window.scrollTo({ top: 0, behavior: 'smooth' });
-          window.open('https://wa.me/5215613683435?text=Confirmo%20mi%20asistencia', '_blank');
-
-          // Google Calendar
-          const calendarUrl = 'https://www.google.com/calendar/render?action=TEMPLATE' +
-            '&text=Fiesta%20de%20Valeria' +
-            '&dates=20250720T180000Z/20250720T210000Z' +
-            '&details=Confirma%20tu%20asistencia%20vía%20WhatsApp%20y%20no%20faltes%20a%20la%20fiesta%20🎉' +
-            '&location=Casa%20de%20los%20abuelos,%20CDMX' +
-            '&sf=true&output=xml';
-
-          window.open(calendarUrl, '_blank');
+          window.open('https://wa.me/5215613683435?text=Hola%20Sam%20%F0%9F%98%81%0AClaro%20que%20asistir%C3%A9%20%F0%9F%A5%B0%0A%C2%A1Confirmo%20mi%20Asistencia!%20%F0%9F%91%8D', '_blank');
+ 
         });
 
         document.getElementById('papa').addEventListener('click', () => {
           modal.classList.add('hidden');
           window.scrollTo({ top: 0, behavior: 'smooth' });
-          window.open('https://wa.me/5215611347845?text=Confirmo%20mi%20asistencia', '_blank');
+          window.open('https://wa.me/5215611347845?text=Hola%20Carlos%20%F0%9F%98%81%0AClaro%20que%20asistir%C3%A9%20%F0%9F%A5%B0%0A%C2%A1Confirmo%20mi%20Asistencia!%20%F0%9F%91%8D', '_blank');
         });
       });
     }
